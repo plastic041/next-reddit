@@ -1,0 +1,29 @@
+{
+  "name": "next-reddit",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.3.0",
+    "jotai": "^1.4.8",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-custom-scrollbars-2": "^4.4.0",
+    "react-dom": "17.0.2",
+    "swr": "^1.1.2-beta.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.0",
+    "@types/react": "17.0.37",
+    "autoprefixer": "^10.4.0",
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.6",
+    "typescript": "4.5.4"
+  }
+}

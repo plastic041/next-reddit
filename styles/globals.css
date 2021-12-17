@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scroll-viewport > div {
+  display: block !important;
+}
