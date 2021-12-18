@@ -18,7 +18,7 @@ const PostListItem = ({ title, score, body, author, link }: Post) => {
 
   return (
     <article
-      className={`flex flex-col gap-2 rounded-md p-4 ${
+      className={`flex flex-col gap-2 rounded-md p-4 transition ${
         isCurrent ? "bg-gray-300" : "bg-gray-100"
       }`}
       onClick={onClick}
@@ -30,7 +30,7 @@ const PostListItem = ({ title, score, body, author, link }: Post) => {
         </h2>
       </div>
 
-      <p className="line-clamp-4 text-gray-600">{body.trim()}</p>
+      <p className="line-clamp-2 text-gray-600">{body.trim()}</p>
     </article>
   );
 };

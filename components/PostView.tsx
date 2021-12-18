@@ -1,14 +1,27 @@
+import { useEffect, useRef } from "react";
+
+import DOMPurify from "dompurify";
 import type { Post } from "../typings/post";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import { marked } from "marked";
 
 const PostView = ({ post }: { post: Post }) => {
+  const body = DOMPurify.sanitize(marked(post.body));
+  const mainRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    mainRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [post]);
+
   return (
     <Scrollbars
       className="self-start h-full col-span-2"
       autoHide
       autoHideTimeout={1000}
     >
-      <main>
+      <main ref={mainRef}>
         <article className="p-4 flex flex-col gap-4 rounded-md bg-gray-50">
           <h1 className="text-3xl text-gray-900">
             <span className="font-light">u/{post.author} - </span>
@@ -23,9 +36,10 @@ const PostView = ({ post }: { post: Post }) => {
             </a>
           </span>
           <hr className="text-gray-500" />
-          <p className="whitespace-pre-wrap text-lg text-gray-700">
-            {post.body.trim()}
-          </p>
+          <p
+            className="whitespace-pre-wrap text-lg text-gray-700"
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
         </article>
       </main>
     </Scrollbars>

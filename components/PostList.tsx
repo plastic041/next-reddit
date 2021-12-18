@@ -5,11 +5,11 @@ import Scrollbars from "react-custom-scrollbars-2";
 const PostList = ({ posts }: { posts: PostRaw[] }) => {
   return (
     <Scrollbars
-      className="self-start h-full col-span-1"
+      className="self-start h-full col-span-1 relative"
       autoHide
       autoHideTimeout={1000}
     >
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 pr-3">
         {posts.map((post) => (
           <li key={post.permalink}>
             <PostListItem
