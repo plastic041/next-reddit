@@ -23,10 +23,15 @@ const PostView = ({ post }: { post: Post }) => {
     >
       <main ref={mainRef}>
         <article className="p-4 flex flex-col gap-4 rounded-md bg-gray-50">
-          <h1 className="text-3xl text-gray-900">
-            <span className="font-light">u/{post.author} - </span>
-            <span className="font-bold">{post.title}</span>
-          </h1>
+          <div className="flex flex-row justify-between">
+            <h1 className="text-3xl text-gray-900">
+              <span className="font-light">u/{post.author} - </span>
+              <span className="font-bold">{post.title}</span>
+            </h1>
+            <span className="mt-2 text-yellow-600 tabular-nums">
+              ⬆️{post.score}
+            </span>
+          </div>
           <span>
             <a
               href={`https://reddit.com${post.link}`}
@@ -37,7 +42,7 @@ const PostView = ({ post }: { post: Post }) => {
           </span>
           <hr className="text-gray-500" />
           <p
-            className="whitespace-pre-wrap text-lg text-gray-700"
+            className="whitespace-pre-wrap prose"
             dangerouslySetInnerHTML={{ __html: body }}
           />
         </article>
