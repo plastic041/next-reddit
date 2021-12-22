@@ -1,5 +1,6 @@
+import type { Post, PostRaw } from "../typings/post";
+
 import PostListItem from "./PostListItem";
-import type { PostRaw } from "../typings/post";
 import Scrollbars from "react-custom-scrollbars-2";
 
 const PostList = ({ posts }: { posts: PostRaw[] }) => {
@@ -10,17 +11,22 @@ const PostList = ({ posts }: { posts: PostRaw[] }) => {
       autoHideTimeout={1000}
     >
       <ul className="flex flex-col gap-4 pr-3">
-        {posts.map((post) => (
-          <li key={post.permalink}>
-            <PostListItem
-              title={post.title}
-              score={post.score}
-              body={post.selftext}
-              author={post.author}
-              link={post.permalink}
-            />
-          </li>
-        ))}
+        {posts.map((postRaw) => {
+          const post: Post = {
+            title: postRaw.title,
+            score: postRaw.score,
+            body: postRaw.selftext,
+            author: postRaw.author,
+            link: postRaw.permalink,
+            createdAt: new Date(postRaw.created_utc * 1000),
+          };
+
+          return (
+            <li key={postRaw.permalink}>
+              <PostListItem post={post} />
+            </li>
+          );
+        })}
       </ul>
     </Scrollbars>
   );

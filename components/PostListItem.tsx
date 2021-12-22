@@ -2,17 +2,18 @@ import type { Post } from "../typings/post";
 import { currentPostAtom } from "../stores/post";
 import { useAtom } from "jotai";
 
-const PostListItem = ({ title, score, body, author, link }: Post) => {
+const PostListItem = ({ post }: { post: Post }) => {
   const [currentPost, setCurrentPost] = useAtom(currentPostAtom);
-  const isCurrent = currentPost?.title === title;
+  const isCurrent = currentPost?.title === post.title;
 
   const onClick = () => {
     setCurrentPost({
-      title,
-      score,
-      body,
-      author,
-      link,
+      title: post.title,
+      score: post.score,
+      body: post.body,
+      author: post.author,
+      link: post.link,
+      createdAt: post.createdAt,
     });
   };
 
@@ -25,12 +26,12 @@ const PostListItem = ({ title, score, body, author, link }: Post) => {
     >
       <div className="flex flex-row gap-2 justify-between items-center">
         <h2 className="text-gray-900 text-xl" onClick={onClick}>
-          <span className="font-light">u/{author} - </span>
-          <span className="font-bold">{title}</span>
+          <span className="font-light">u/{post.author} - </span>
+          <span className="font-bold">{post.title}</span>
         </h2>
       </div>
 
-      <p className="line-clamp-2 text-gray-600">{body.trim()}</p>
+      <p className="line-clamp-2 text-gray-600">{post.body.trim()}</p>
     </article>
   );
 };

@@ -1,4 +1,4 @@
-import { ChangeEvent, Suspense, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import PostList from "../../../components/PostList";
 import type { PostRaw } from "../../../typings/post";

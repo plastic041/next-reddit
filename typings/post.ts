@@ -5,6 +5,7 @@ export type PostRaw = {
   permalink: string;
   score: number;
   author: string;
+  created_utc: number;
 };
 
 export type Post = {
@@ -13,4 +14,5 @@ export type Post = {
   body: string;
   author: string;
   link: string;
+  createdAt: Date;
 };
