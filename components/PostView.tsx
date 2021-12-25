@@ -24,7 +24,7 @@ const PostView = ({ post }: { post: Post }) => {
 
   return (
     <Scrollbars
-      className="self-start h-full col-span-full md:col-span-2"
+      className="self-start h-full w-full`"
       autoHide
       autoHideTimeout={1000}
     >
@@ -44,6 +44,8 @@ const PostView = ({ post }: { post: Post }) => {
             <a
               href={`https://reddit.com${post.link}`}
               className="text-blue-500 cursor-pointer"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Open in Reddit ↗
             </a>

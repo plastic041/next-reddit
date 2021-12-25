@@ -43,7 +43,7 @@ const Page = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <h1 className="mb-4">
+      <h1 className="ml-4 mb-4">
         r/{subreddit} -{" "}
         <select
           value={top}
@@ -60,10 +60,14 @@ const Page = () => {
       <div className="grid grid-cols-3 gap-1 xl:px-40 2xl:px-64 flex-grow">
         {postsData?.data ? (
           <>
-            <PostList
-              posts={postsData.data.children.map((child) => child.data)}
-            />
-            {currentPost && <PostView post={currentPost} />}
+            <div className="hidden md:flex col-span-1">
+              <PostList
+                posts={postsData.data.children.map((child) => child.data)}
+              />
+            </div>
+            <div className="col-span-full md:col-span-2">
+              {currentPost && <PostView post={currentPost} />}
+            </div>
           </>
         ) : (
           <div className="flex flex-row justify-center col-span-full">
