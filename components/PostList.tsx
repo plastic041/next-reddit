@@ -6,7 +6,7 @@ import Scrollbars from "react-custom-scrollbars-2";
 const PostList = ({ posts }: { posts: PostRaw[] }) => {
   return (
     <Scrollbars
-      className="self-start h-full col-span-1 relative"
+      className="self-start h-full col-span-1 relative hidden md:flex"
       autoHide
       autoHideTimeout={1000}
     >

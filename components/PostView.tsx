@@ -24,7 +24,7 @@ const PostView = ({ post }: { post: Post }) => {
 
   return (
     <Scrollbars
-      className="self-start h-full col-span-2"
+      className="self-start h-full col-span-full md:col-span-2"
       autoHide
       autoHideTimeout={1000}
     >
