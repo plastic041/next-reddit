@@ -7,14 +7,7 @@ const PostListItem = ({ post }: { post: Post }) => {
   const isCurrent = currentPost?.title === post.title;
 
   const onClick = () => {
-    setCurrentPost({
-      title: post.title,
-      score: post.score,
-      body: post.body,
-      author: post.author,
-      link: post.link,
-      createdAt: post.createdAt,
-    });
+    setCurrentPost(post);
   };
 
   return (
@@ -24,14 +17,14 @@ const PostListItem = ({ post }: { post: Post }) => {
       }`}
       onClick={onClick}
     >
-      <div className="flex flex-row gap-2 justify-between items-center">
-        <h2 className="text-gray-900 text-xl" onClick={onClick}>
-          <span className="font-light">u/{post.author} - </span>
-          <span className="font-bold">{post.title}</span>
-        </h2>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-gray-900 text-lg font-bold">{post.title}</h2>
+        <p className="line-clamp-2 text-gray-600">{post.body.trim()}</p>
       </div>
-
-      <p className="line-clamp-2 text-gray-600">{post.body.trim()}</p>
+      <div className="flex justify-end text-sm gap-2">
+        <span className="text-yellow-600">{post.score}⬆️</span>
+        <span className="text-blue-600">{post.awardsCount}🏆</span>
+      </div>
     </article>
   );
 };
