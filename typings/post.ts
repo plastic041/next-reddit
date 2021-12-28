@@ -6,6 +6,11 @@ export type PostRaw = {
   score: number;
   author: string;
   created_utc: number;
+  all_awardings: {
+    icon_url: string;
+    count: number;
+    name: string;
+  }[];
 };
 
 export type Post = {
@@ -15,4 +20,5 @@ export type Post = {
   author: string;
   link: string;
   createdAt: Date;
+  awardsCount: number;
 };

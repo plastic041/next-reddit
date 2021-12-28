@@ -35,9 +35,10 @@ const PostView = ({ post }: { post: Post }) => {
               <span className="font-light">u/{post.author} - </span>
               <span className="font-bold">{post.title}</span>
             </h1>
-            <span className="mt-2 text-yellow-600 tabular-nums">
-              ⬆️{post.score}
-            </span>
+            <div className="flex flex-col tabular-nums items-end ml-4">
+              <span className="text-yellow-600">{post.score}⬆️</span>
+              <span className="text-blue-600">{post.awardsCount}🏆</span>
+            </div>
           </div>
           <span className="text-gray-600 text-sm">{makeDate()}</span>
           <span className="">

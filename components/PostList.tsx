@@ -2,6 +2,7 @@ import type { Post, PostRaw } from "../typings/post";
 
 import PostListItem from "./PostListItem";
 import Scrollbars from "react-custom-scrollbars-2";
+import { getAwardsCount } from "../lib/awards";
 
 const PostList = ({ posts }: { posts: PostRaw[] }) => {
   return (
@@ -19,6 +20,7 @@ const PostList = ({ posts }: { posts: PostRaw[] }) => {
             author: postRaw.author,
             link: postRaw.permalink,
             createdAt: new Date(postRaw.created_utc * 1000),
+            awardsCount: getAwardsCount(postRaw),
           };
 
           return (
