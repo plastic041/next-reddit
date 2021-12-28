@@ -29,7 +29,7 @@ const PostView = ({ post }: { post: Post }) => {
       autoHideTimeout={1000}
     >
       <main ref={mainRef}>
-        <article className="p-4 flex flex-col rounded-md bg-gray-50">
+        <article className="p-4 flex flex-col rounded-md bg-gray-50 mb-80">
           <div className="flex flex-row justify-between mb-2">
             <h1 className="text-3xl text-gray-900">
               <span className="font-light">u/{post.author} - </span>
