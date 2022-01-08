@@ -1,12 +1,12 @@
+import "simplebar-react/dist/simplebar.min.css";
+
 import { useEffect, useRef } from "react";
 
-import DOMPurify from "dompurify";
 import type { Post } from "../typings/post";
-import { Scrollbars } from "react-custom-scrollbars-2";
-import { marked } from "marked";
+import ReactMarkdown from "react-markdown";
+import SimpleBar from "simplebar-react";
 
 const PostView = ({ post }: { post: Post }) => {
-  const body = DOMPurify.sanitize(marked(post.body));
   const mainRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -23,42 +23,35 @@ const PostView = ({ post }: { post: Post }) => {
   };
 
   return (
-    <Scrollbars
-      className="self-start h-full w-full`"
-      autoHide
-      autoHideTimeout={1000}
-    >
-      <main ref={mainRef}>
-        <article className="p-4 flex flex-col rounded-md bg-gray-50 mb-80">
-          <div className="flex flex-row justify-between mb-2">
-            <h1 className="text-3xl text-gray-900">
-              <span className="font-light">u/{post.author} - </span>
-              <span className="font-bold">{post.title}</span>
-            </h1>
-            <div className="flex flex-col tabular-nums items-end ml-4">
-              <span className="text-yellow-600">{post.score}⬆️</span>
-              <span className="text-blue-600">{post.awardsCount}🏆</span>
-            </div>
-          </div>
-          <span className="text-gray-600 text-sm">{makeDate()}</span>
-          <span className="">
-            <a
-              href={`https://reddit.com${post.link}`}
-              className="text-blue-500 cursor-pointer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open in Reddit ↗
-            </a>
+    <SimpleBar className="flex flex-1">
+      <article
+        ref={mainRef}
+        className="p-4 flex flex-col rounded-md bg-gray-50 overflow-auto"
+      >
+        <div className="flex flex-row justify-between mb-2">
+          <h1 className="text-3xl text-gray-900">
+            <span className="font-light">u/{post.author} - </span>
+            <span className="font-bold">{post.title}</span>
+          </h1>
+          <span className="mt-2 text-yellow-600 tabular-nums">
+            ⬆️{post.score}
           </span>
-          <hr className="text-gray-500 my-2" />
-          <p
-            className="whitespace-pre-wrap prose"
-            dangerouslySetInnerHTML={{ __html: body }}
-          />
-        </article>
-      </main>
-    </Scrollbars>
+        </div>
+        <span className="text-gray-600 text-sm">{makeDate()}</span>
+        <span className="">
+          <a
+            href={`https://reddit.com${post.link}`}
+            className="text-blue-500 cursor-pointer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in Reddit ↗
+          </a>
+        </span>
+        <hr className="text-gray-500 my-2" />
+        <ReactMarkdown className="prose">{post.body.trim()}</ReactMarkdown>
+      </article>
+    </SimpleBar>
   );
 };
 

@@ -4,11 +4,11 @@ import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <body className="bg-gray-200 h-screen">
-      <div className="container mx-auto gap-2 py-4 h-full">
+    <div className="bg-gray-200 h-screen w-screen flex justify-center">
+      <div className="container h-full">
         <Component {...pageProps} />
       </div>
-    </body>
+    </div>
   );
 }
 
