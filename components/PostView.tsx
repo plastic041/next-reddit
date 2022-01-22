@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import type { Post } from "../typings/post";
 import ReactMarkdown from "react-markdown";
 import SimpleBar from "simplebar-react";
+import remarkGfm from "remark-gfm";
 
 const PostView = ({ post }: { post: Post }) => {
   const mainRef = useRef<HTMLDivElement | null>(null);
@@ -49,7 +50,7 @@ const PostView = ({ post }: { post: Post }) => {
           </a>
         </span>
         <hr className="text-gray-500 my-2" />
-        <ReactMarkdown className="prose">{post.body.trim()}</ReactMarkdown>
+        <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>{post.body.trim()}</ReactMarkdown>
       </article>
     </SimpleBar>
   );
