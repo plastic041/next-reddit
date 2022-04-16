@@ -1,15 +1,12 @@
-import "simplebar-react/dist/simplebar.min.css";
-
-import {
-  ClipboardCopyIcon,
-  Link2Icon,
-  ThickArrowUpIcon,
-} from "@radix-ui/react-icons";
 import { useEffect, useRef } from "react";
 
-import type { Post } from "../typings/post";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Paper from "@mui/material/Paper";
+import type { Post } from "~/typings/post";
+import PostHeader from "~/components/PostHeader";
 import ReactMarkdown from "react-markdown";
-import SimpleBar from "simplebar-react";
+import Stack from "@mui/material/Stack";
 import remarkGfm from "remark-gfm";
 
 const PostView = ({ post }: { post: Post }) => {
@@ -21,61 +18,45 @@ const PostView = ({ post }: { post: Post }) => {
     });
   }, [post]);
 
-  const makeDate = () => {
-    const year = post.createdAt.getFullYear();
-    const month = post.createdAt.getMonth() + 1;
-    const day = post.createdAt.getDate();
-    return `${year}-${month}-${day}`;
-  };
-
   return (
-    <SimpleBar className="flex flex-1" autoHide={false}>
-      <article
-        ref={mainRef}
-        className="p-4 flex flex-col rounded-md bg-gray-50 overflow-auto"
+    <Box sx={{ pb: 1, display: "flex" }}>
+      <Paper
+        component="article"
+        sx={{
+          padding: 2,
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 0,
+        }}
       >
-        <div className="flex flex-row justify-between mb-2">
-          <h1 className="text-3xl text-gray-900">
-            <span className="font-light">u/{post.author} - </span>
-            <span className="font-bold">{post.title}</span>
-          </h1>
-          <span className="mt-2 text-yellow-600 tabular-nums">
-            <div className="flex flex-row items-center">
-              <ThickArrowUpIcon />
-              {post.score}
-            </div>
-          </span>
-        </div>
-        <span className="text-gray-600 text-sm">{makeDate()}</span>
-        <span className="flex flex-row gap-2">
-          <a
-            href={`https://reddit.com${post.link}`}
-            className="text-blue-500 cursor-pointer flex flex-row items-center gap-1 underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Link2Icon />
-            <span>Open in Reddit</span>
-          </a>
-          <button
-            type="button"
-            id="copy-link-button"
-            className="text-green-500 cursor-pointer flex flex-row items-center active:translate-y-0.5"
-            onClick={() => {
-              // copy to clipboard using navigator.clipboard
-              const text = `https://reddit.com${post.link}`;
-              navigator.clipboard.writeText(text);
+        <PostHeader post={post} />
+        <Stack direction="column" spacing={1} sx={{ height: "1px", flex: 1 }}>
+          <Divider />
+          <Box
+            sx={{
+              overflow: "scroll",
             }}
           >
-            <ClipboardCopyIcon />
-          </button>
-        </span>
-        <hr className="text-gray-500 my-2" />
-        <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>
-          {post.body.trim()}
-        </ReactMarkdown>
-      </article>
-    </SimpleBar>
+            <Box
+              ref={mainRef}
+              sx={{
+                // remove first and list element's margin
+                "& > *:first-child": {
+                  mt: 0,
+                },
+                "& > *:last-child": {
+                  mb: 0,
+                },
+              }}
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.body.trim()}
+              </ReactMarkdown>
+            </Box>
+          </Box>
+        </Stack>
+      </Paper>
+    </Box>
   );
 };
 
