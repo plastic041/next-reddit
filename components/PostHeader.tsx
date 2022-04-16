@@ -1,14 +1,8 @@
 import Box from "@mui/material/Box";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import IconButton from "@mui/material/IconButton";
 import IconButtons from "./PostHeader/IconButtons";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import type { Post } from "~/typings/post";
 import PostInfos from "./PostHeader/PostInfos";
 import Stack from "@mui/material/Stack";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Typography from "@mui/material/Typography";
 
 const PostHeader = ({ post }: { post: Post }) => {

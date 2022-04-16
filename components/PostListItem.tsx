@@ -1,6 +1,3 @@
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import Paper from "@mui/material/Paper";
 import type { Post } from "../typings/post";
