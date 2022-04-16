@@ -1,5 +1,10 @@
 import "simplebar-react/dist/simplebar.min.css";
 
+import {
+  ClipboardCopyIcon,
+  Link2Icon,
+  ThickArrowUpIcon,
+} from "@radix-ui/react-icons";
 import { useEffect, useRef } from "react";
 
 import type { Post } from "../typings/post";
@@ -24,7 +29,7 @@ const PostView = ({ post }: { post: Post }) => {
   };
 
   return (
-    <SimpleBar className="flex flex-1">
+    <SimpleBar className="flex flex-1" autoHide={false}>
       <article
         ref={mainRef}
         className="p-4 flex flex-col rounded-md bg-gray-50 overflow-auto"
@@ -35,22 +40,40 @@ const PostView = ({ post }: { post: Post }) => {
             <span className="font-bold">{post.title}</span>
           </h1>
           <span className="mt-2 text-yellow-600 tabular-nums">
-            ⬆️{post.score}
+            <div className="flex flex-row items-center">
+              <ThickArrowUpIcon />
+              {post.score}
+            </div>
           </span>
         </div>
         <span className="text-gray-600 text-sm">{makeDate()}</span>
-        <span className="">
+        <span className="flex flex-row gap-2">
           <a
             href={`https://reddit.com${post.link}`}
-            className="text-blue-500 cursor-pointer"
+            className="text-blue-500 cursor-pointer flex flex-row items-center gap-1 underline"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open in Reddit ↗
+            <Link2Icon />
+            <span>Open in Reddit</span>
           </a>
+          <button
+            type="button"
+            id="copy-link-button"
+            className="text-green-500 cursor-pointer flex flex-row items-center active:translate-y-0.5"
+            onClick={() => {
+              // copy to clipboard using navigator.clipboard
+              const text = `https://reddit.com${post.link}`;
+              navigator.clipboard.writeText(text);
+            }}
+          >
+            <ClipboardCopyIcon />
+          </button>
         </span>
         <hr className="text-gray-500 my-2" />
-        <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>{post.body.trim()}</ReactMarkdown>
+        <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>
+          {post.body.trim()}
+        </ReactMarkdown>
       </article>
     </SimpleBar>
   );

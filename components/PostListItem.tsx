@@ -1,4 +1,5 @@
 import type { Post } from "../typings/post";
+import { ThickArrowUpIcon, StarIcon } from "@radix-ui/react-icons";
 import { currentPostAtom } from "../stores/post";
 import { useAtom } from "jotai";
 
@@ -22,8 +23,14 @@ const PostListItem = ({ post }: { post: Post }) => {
         <p className="line-clamp-2 text-gray-600">{post.body.trim()}</p>
       </div>
       <div className="flex justify-end text-sm gap-2">
-        <span className="text-yellow-600">{post.score}⬆️</span>
-        <span className="text-blue-600">{post.awardsCount}🏆</span>
+        <div className="flex flex-row items-center text-yellow-600">
+          <span>{post.score}</span>
+          <ThickArrowUpIcon />
+        </div>
+        <div className="flex flex-row items-center text-blue-600">
+          <span>{post.awardsCount}</span>
+          <StarIcon />
+        </div>
       </div>
     </article>
   );

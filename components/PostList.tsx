@@ -9,7 +9,7 @@ import { getAwardsCount } from "../lib/awards";
 const PostList = ({ posts }: { posts: PostRaw[] }) => {
   return (
     <SimpleBar className="flex flex-1">
-      <ul className="flex flex-col gap-4 overflow-auto">
+      <ul className="flex flex-col gap-4 overflow-auto mr-6">
         {posts.map((postRaw) => {
           const post: Post = {
             title: postRaw.title,
