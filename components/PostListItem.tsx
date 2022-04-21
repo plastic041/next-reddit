@@ -25,6 +25,15 @@ const PostListItem = ({ post }: { post: Post }) => {
         display: "flex",
         flexDirection: "column",
         gap: 1,
+        cursor: `${isCurrent ? "default" : "pointer"}`,
+
+        transition: "all 0.2s ease-in-out",
+
+        transform: `${isCurrent ? "none" : "scale(0.95)"}`,
+
+        "&:hover": {
+          transform: `${isCurrent ? "none" : "scale(1)"}`,
+        },
       }}
     >
       <Stack>

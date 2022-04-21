@@ -11,10 +11,7 @@ const PostList = ({ posts }: { posts: PostRaw[] }) => {
       spacing={2}
       sx={{
         listStyleType: "none",
-        paddingTop: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        paddingBottom: 1,
+        padding: 1,
         margin: 0,
       }}
     >

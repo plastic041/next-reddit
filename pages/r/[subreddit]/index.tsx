@@ -75,7 +75,8 @@ const Page = () => {
           <Box
             component="aside"
             sx={{
-              overflow: "scroll",
+              overflowY: "scroll",
+              overflowX: "hidden",
               flex: 0,
               flexBasis: "33%",
             }}

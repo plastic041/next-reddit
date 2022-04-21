@@ -34,7 +34,8 @@ const PostView = ({ post }: { post: Post }) => {
           <Divider />
           <Box
             sx={{
-              overflow: "scroll",
+              overflowY: "scroll",
+              overflowX: "hidden",
             }}
           >
             <Box
