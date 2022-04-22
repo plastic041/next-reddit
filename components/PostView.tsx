@@ -12,18 +12,6 @@ import SimpleBar from "simplebar-react";
 
 const PostView = ({ post }: { post: Post }) => {
   const mainRef = useRef<HTMLDivElement | null>(null);
-
-  const onScroll = () => {
-    if (mainRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = mainRef.current;
-      if (scrollTop + clientHeight === scrollHeight) {
-        console.log("Reached bottom");
-      } else {
-        console.log("Not at bottom");
-      }
-    }
-  };
-
   useEffect(() => {
     if (mainRef.current) {
       mainRef.current.scrollIntoView({
@@ -62,7 +50,7 @@ const PostView = ({ post }: { post: Post }) => {
             <Box
               sx={{
                 // remove first and list element's margin
-                "& > *:first-child": {
+                "& > *:first-of-type": {
                   mt: 0,
                 },
                 "& > *:last-child": {
