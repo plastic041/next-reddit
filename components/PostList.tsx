@@ -11,8 +11,9 @@ const PostList = ({ posts }: { posts: PostRaw[] }) => {
       spacing={2}
       sx={{
         listStyleType: "none",
-        padding: 1,
-        margin: 0,
+        p: 2,
+        pr: 3,
+        m: 0,
       }}
     >
       {posts.map((postRaw) => {

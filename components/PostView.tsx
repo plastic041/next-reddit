@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -8,38 +8,58 @@ import PostHeader from "~/components/PostHeader";
 import ReactMarkdown from "react-markdown";
 import Stack from "@mui/material/Stack";
 import remarkGfm from "remark-gfm";
+import SimpleBar from "simplebar-react";
 
 const PostView = ({ post }: { post: Post }) => {
   const mainRef = useRef<HTMLDivElement | null>(null);
 
+  const onScroll = () => {
+    if (mainRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = mainRef.current;
+      if (scrollTop + clientHeight === scrollHeight) {
+        console.log("Reached bottom");
+      } else {
+        console.log("Not at bottom");
+      }
+    }
+  };
+
   useEffect(() => {
-    mainRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
+    if (mainRef.current) {
+      mainRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   }, [post]);
 
   return (
-    <Box sx={{ pb: 1, display: "flex" }}>
+    <Box sx={{ pb: 1, display: "flex", width: "100%" }}>
       <Paper
         component="article"
+        elevation={3}
         sx={{
           padding: 2,
           display: "flex",
           flexDirection: "column",
           flexGrow: 0,
+          width: "100%",
         }}
       >
         <PostHeader post={post} />
         <Stack direction="column" spacing={1} sx={{ height: "1px", flex: 1 }}>
           <Divider />
           <Box
+            component={SimpleBar}
+            autoHide={false}
+            scrollableNodeProps={{
+              ref: mainRef,
+            }}
             sx={{
-              overflowY: "scroll",
-              overflowX: "hidden",
+              maxHeight: "100%",
+              pr: 3,
             }}
           >
             <Box
-              ref={mainRef}
               sx={{
                 // remove first and list element's margin
                 "& > *:first-child": {

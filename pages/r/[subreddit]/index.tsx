@@ -7,6 +7,7 @@ import Header from "~/components/Header";
 import PostList from "~/components/PostList";
 import type { PostRaw } from "~/typings/post";
 import PostView from "~/components/PostView";
+import SimpleBar from "simplebar-react";
 import { Tops } from "~/typings/Tops";
 import { currentPostAtom } from "~/stores/post";
 import { fetcher } from "~/lib/fetch";
@@ -58,7 +59,6 @@ const Page = () => {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden",
       }}
     >
       <Header subreddit={subreddit} top={top} onChangeTop={onChangeTop} />
@@ -73,12 +73,12 @@ const Page = () => {
           }}
         >
           <Box
-            component="aside"
+            component={SimpleBar}
+            autoHide={false}
             sx={{
-              overflowY: "scroll",
-              overflowX: "hidden",
               flex: 0,
               flexBasis: "33%",
+              maxHeight: "100%",
             }}
           >
             <PostList

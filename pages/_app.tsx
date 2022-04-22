@@ -1,6 +1,7 @@
 import { Container, CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { indigo, teal } from "@mui/material/colors";
+import "simplebar-react/dist/simplebar.min.css";
 
 import type { AppProps } from "next/app";
 

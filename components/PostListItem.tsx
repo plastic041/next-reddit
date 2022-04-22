@@ -6,6 +6,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Typography from "@mui/material/Typography";
 import { currentPostAtom } from "../stores/post";
 import { useAtom } from "jotai";
+import { teal } from "@mui/material/colors";
 
 const PostListItem = ({ post }: { post: Post }) => {
   const [currentPost, setCurrentPost] = useAtom(currentPostAtom);
@@ -18,21 +19,29 @@ const PostListItem = ({ post }: { post: Post }) => {
   return (
     <Paper
       component="article"
-      elevation={isCurrent ? 2 : 0}
+      elevation={isCurrent ? 3 : 0}
+      className={`${isCurrent ? "current" : ""}`}
       onClick={onClick}
       sx={{
         p: 2,
         display: "flex",
         flexDirection: "column",
         gap: 1,
-        cursor: `${isCurrent ? "default" : "pointer"}`,
-
         transition: "all 0.2s ease-in-out",
-
-        transform: `${isCurrent ? "none" : "scale(0.95)"}`,
+        cursor: "pointer",
 
         "&:hover": {
-          transform: `${isCurrent ? "none" : "scale(1)"}`,
+          transform: "translateY(-1px)",
+          boxShadow: 2,
+        },
+
+        "&.current": {
+          cursor: "default",
+          transform: "scale(1.05)",
+
+          "&:hover": {
+            backgroundColor: "#fff",
+          },
         },
       }}
     >
