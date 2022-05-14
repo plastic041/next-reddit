@@ -59,7 +59,7 @@ const PostView = ({ post }: { post: Post }) => {
               }}
             >
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {post.body.trim()}
+                {post.body.trim().replaceAll("&amp;#x200B;", "")}
               </ReactMarkdown>
             </Box>
           </Box>
