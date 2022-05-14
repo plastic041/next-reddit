@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { currentPostAtom } from "../stores/post";
 import { useAtom } from "jotai";
 import { teal } from "@mui/material/colors";
+import Head from "next/head";
 
 const PostListItem = ({ post }: { post: Post }) => {
   const [currentPost, setCurrentPost] = useAtom(currentPostAtom);
@@ -45,6 +46,9 @@ const PostListItem = ({ post }: { post: Post }) => {
         },
       }}
     >
+      <Head>
+        <title>{currentPost?.title}</title>
+      </Head>
       <Stack>
         <Typography variant="body1">{post.title}</Typography>
         <Typography variant="body2" color="gray">
