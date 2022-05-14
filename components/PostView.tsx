@@ -14,6 +14,7 @@ const PostView = ({ post }: { post: Post }) => {
   const mainRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (mainRef.current) {
+      console.log(mainRef.current.scrollHeight);
       mainRef.current.scrollIntoView({
         behavior: "smooth",
       });
@@ -39,15 +40,13 @@ const PostView = ({ post }: { post: Post }) => {
           <Box
             component={SimpleBar}
             autoHide={false}
-            scrollableNodeProps={{
-              ref: mainRef,
-            }}
             sx={{
               maxHeight: "100%",
               pr: 3,
             }}
           >
             <Box
+              ref={mainRef}
               sx={{
                 // remove first and list element's margin
                 "& > *:first-of-type": {
