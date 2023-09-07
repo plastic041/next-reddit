@@ -1,4 +1,4 @@
-import { PostRaw } from "../typings/post";
+import { PostRaw } from "../_typings/post";
 
 export const getAwardsCount = (post: PostRaw): number => {
   return post.all_awardings.reduce((acc, cur) => acc + cur.count, 0);
