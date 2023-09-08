@@ -9,7 +9,7 @@ const PostHeader = ({ post }: { post: Post }) => {
 
   return (
     <Flex direction="column">
-      <h2>
+      <h2 className="inline">
         <Text size="6" as="span" weight="light">
           u/{author} -{" "}
         </Text>
