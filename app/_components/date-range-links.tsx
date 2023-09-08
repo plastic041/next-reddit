@@ -11,14 +11,14 @@ export function DateRangeLinks() {
   const searchParams = useSearchParams();
 
   const subreddit = params.subreddit;
-  const dateRange = searchParams.get("t") || "week";
+  const dateRange = searchParams.get("range") || "week";
   const isCurrent = (dr: string) => dr === dateRange;
 
   return (
     <Flex direction="row" gap="1">
       {DATE_RANGE.map((dr) => (
         <Button asChild key={dr} variant={isCurrent(dr) ? "solid" : "soft"}>
-          <Link href={`/r/${subreddit}?t=${dr}`}>{dr}</Link>
+          <Link href={`/r/${subreddit}?range=${dr}`}>{dr}</Link>
         </Button>
       ))}
     </Flex>

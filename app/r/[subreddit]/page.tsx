@@ -11,10 +11,10 @@ export default async function Page({
   searchParams,
 }: {
   params: { subreddit: string };
-  searchParams: { t?: DateRange };
+  searchParams: { range?: DateRange };
 }) {
   const subreddit = params.subreddit;
-  const top = searchParams.t ?? "week";
+  const top = searchParams.range ?? "week";
 
   const res = await fetch(
     `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`,
