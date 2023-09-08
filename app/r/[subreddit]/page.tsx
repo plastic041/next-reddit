@@ -1,6 +1,5 @@
-import { Grid, Flex } from "@radix-ui/themes";
+import { Grid } from "@radix-ui/themes";
 
-import { Header } from "~/_components/header";
 import { PostList } from "~/_components/post-list/list";
 import { PostView } from "~/_components/post-view";
 
@@ -38,18 +37,15 @@ export default async function Page({
   };
 
   return (
-    <Flex className="h-screen" direction="column">
-      <Header subreddit={subreddit} />
-      <Grid
-        columns="3"
-        gap="3"
-        width="100%"
-        className="grow h-0 overflow-hidden"
-        p="3"
-      >
-        <PostList posts={postsData.data.children.map((child) => child.data)} />
-        <PostView />
-      </Grid>
-    </Flex>
+    <Grid
+      columns="3"
+      gap="3"
+      width="100%"
+      className="grow h-0 overflow-hidden"
+      p="3"
+    >
+      <PostList posts={postsData.data.children.map((child) => child.data)} />
+      <PostView />
+    </Grid>
   );
 }
