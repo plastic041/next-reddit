@@ -35,7 +35,7 @@ export function PostView() {
             <Separator size="4" />
             <ScrollArea
               className="pr-2 h-full overflow-auto"
-              scrollbars="horizontal"
+              scrollbars="vertical"
             >
               <Box ref={mainRef}>
                 <ReactMarkdown
