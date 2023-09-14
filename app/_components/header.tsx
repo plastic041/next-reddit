@@ -19,7 +19,7 @@ export function Header({ subreddit }: HeaderProps) {
         r/{subreddit}
       </Text>
       <Flex align="center" gap="2">
-        <DateRangeLinks subreddit={subreddit} />
+        <DateRangeLinks />
         <IconButton asChild>
           <a
             href="https://github.com/plastic041/next-reddit"
