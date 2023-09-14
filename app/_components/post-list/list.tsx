@@ -6,11 +6,7 @@ import PostListItem from "./list-item";
 
 export function PostList({ posts }: { posts: PostRaw[] }) {
   return (
-    <ScrollArea
-      scrollbars="vertical"
-      className="col-span-1 h-full overflow-auto"
-      type="always"
-    >
+    <ScrollArea scrollbars="vertical" className="col-span-1 p-3" type="always">
       <Flex direction="column" asChild gap="3" pr="3">
         <ul>
           {posts.map((postRaw) => {

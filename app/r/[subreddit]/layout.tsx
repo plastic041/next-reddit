@@ -1,5 +1,3 @@
-import { Flex } from "@radix-ui/themes";
-
 import { Header } from "~/_components/header";
 
 import type { ReactNode } from "react";
@@ -12,9 +10,9 @@ export default function Layout({
   children: ReactNode;
 }) {
   return (
-    <Flex className="h-screen" direction="column">
+    <div className="h-screen w-screen grid-rows-[min-content_auto] grid-cols-1 grid">
       <Header subreddit={params.subreddit} />
       {children}
-    </Flex>
+    </div>
   );
 }

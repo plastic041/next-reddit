@@ -27,16 +27,13 @@ export function PostView() {
   }
 
   return (
-    <article className="col-span-2 grow min-h-0">
+    <article className="col-span-2 min-h-0 p-3">
       <Card asChild>
         <Flex p="2" width="100%" className="h-full">
           <Flex direction="column" width="100%" className="h-full">
             <PostHeader post={post} />
-            <Separator size="4" />
-            <ScrollArea
-              className="pr-2 h-full overflow-auto"
-              scrollbars="vertical"
-            >
+            <Separator size="4" my="3" />
+            <ScrollArea className="pr-2" scrollbars="vertical">
               <Box ref={mainRef}>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}

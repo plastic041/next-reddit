@@ -13,7 +13,7 @@ export function Header({ subreddit }: HeaderProps) {
       align="center"
       mb="2"
       p="4"
-      className="bg-[var(--accent-1)]"
+      className="bg-[var(--accent-1)] col-span-3"
     >
       <Text className="grow" size="6">
         r/{subreddit}

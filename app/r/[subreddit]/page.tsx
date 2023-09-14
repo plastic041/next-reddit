@@ -37,15 +37,9 @@ export default async function Page({
   };
 
   return (
-    <Grid
-      columns="3"
-      gap="3"
-      width="100%"
-      className="grow h-0 overflow-hidden"
-      p="3"
-    >
+    <div className="grid grid-cols-3 w-full h-full min-h-0">
       <PostList posts={postsData.data.children.map((child) => child.data)} />
       <PostView />
-    </Grid>
+    </div>
   );
 }
