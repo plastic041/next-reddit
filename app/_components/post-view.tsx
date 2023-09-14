@@ -33,11 +33,11 @@ export function PostView() {
           <Flex direction="column" width="100%" className="h-full">
             <PostHeader post={post} />
             <Separator size="4" />
-            <ScrollArea className="pr-2 h-full overflow-auto">
-              <Box
-                ref={mainRef}
-                className="[&>*]:first-of-type:mt-0 [&>*]:last-of-type:mb-0"
-              >
+            <ScrollArea
+              className="pr-2 h-full overflow-auto"
+              scrollbars="horizontal"
+            >
+              <Box ref={mainRef}>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   className="prose max-w-none pr-2"
