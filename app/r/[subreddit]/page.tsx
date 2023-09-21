@@ -23,9 +23,6 @@ export default async function Page({
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 60 * 60 * 24,
-      },
     }
   );
   const postsData = (await res.json()) as {
