@@ -1,5 +1,3 @@
-import { Grid } from "@radix-ui/themes";
-
 import { PostList } from "~/_components/post-list/list";
 import { PostView } from "~/_components/post-view";
 
