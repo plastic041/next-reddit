@@ -37,7 +37,7 @@ export function PostView() {
               <Box ref={mainRef}>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
-                  className="prose max-w-none pr-2"
+                  className="prose max-w-none pr-2 dark:prose-invert"
                 >
                   {post.body.trim().replaceAll("&amp;#x200B;", "")}
                 </ReactMarkdown>

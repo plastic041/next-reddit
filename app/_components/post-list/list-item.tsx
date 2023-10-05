@@ -22,7 +22,7 @@ const PostListItem = ({ post }: { post: Post }) => {
         isCurrent
           ? "bg-[var(--accent-3)] shadow-md"
           : "bg-[var(--accent-1)] shadow-none hover:shadow"
-      } flex flex-col border rounded-md transition-all`}
+      } flex flex-col border rounded-md transition-all border-[var(--gray-6)] `}
       asChild
     >
       <button onClick={onClick}>

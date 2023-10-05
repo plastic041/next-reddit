@@ -1,9 +1,9 @@
 import { Roboto_Slab } from "next/font/google";
-import { Theme } from "@radix-ui/themes";
 
-import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 import "./globals.css";
+
+import { Providers } from "./providers";
 
 import type { ReactNode } from "react";
 
@@ -17,9 +17,9 @@ export default function App({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={robotoSlab.className}>
-        <Theme accentColor="violet" grayColor="mauve">
+        <Providers>
           <div className="bg-[var(--accent-1)]">{children}</div>
-        </Theme>
+        </Providers>
       </body>
     </html>
   );
