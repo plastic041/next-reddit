@@ -21,6 +21,7 @@ export default async function Page({
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     }
   );
   const postsData = (await res.json()) as {
