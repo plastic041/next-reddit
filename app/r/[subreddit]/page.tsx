@@ -15,15 +15,9 @@ export default async function Page({
   const top = searchParams.range ?? "week";
 
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-cache",
-    }
+    `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`
   );
+
   const postsData = (await res.json()) as {
     data: {
       children: {
