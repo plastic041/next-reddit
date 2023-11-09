@@ -15,7 +15,8 @@ export default async function Page({
   const top = searchParams.range ?? "week";
 
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`
+    `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`,
+    { next: { revalidate: 86400 } } // 24 hours
   );
 
   const postsData = (await res.json()) as {
