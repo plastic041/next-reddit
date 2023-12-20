@@ -13,11 +13,9 @@ export default async function Page({
 }) {
   const subreddit = params.subreddit;
   const top = searchParams.range ?? "week";
+  const url = `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`;
 
-  const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`,
-    { next: { revalidate: 86400 } } // 24 hours
-  );
+  const res = await fetch(url, { cache: "no-store" });
 
   const postsData = (await res.json()) as {
     data: {
