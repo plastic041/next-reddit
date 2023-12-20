@@ -13,7 +13,7 @@ export default async function Page({
 }) {
   const subreddit = params.subreddit;
   const top = searchParams.range ?? "week";
-  const url = `https://www.reddit.com/r/${subreddit}/top.json?t=${top}`;
+  const url = `https://old.reddit.com/r/${subreddit}/top.json?t=${top}`;
 
   const res = await fetch(url, { cache: "no-store" });
 
