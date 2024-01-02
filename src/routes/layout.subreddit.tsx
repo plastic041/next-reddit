@@ -24,7 +24,7 @@ function SubredditContent({
 
   return (
     <div className="flex flex-row mt-4 min-h-0">
-      <ScrollArea className="pr-3 max-w-xs shrink-0">
+      <ScrollArea className="max-w-xs shrink-0">
         <ul className="flex flex-col space-y-4">
           {posts.map((post) => {
             const isActive = post.id === activePostId;
@@ -44,7 +44,7 @@ function SubredditContent({
           })}
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-1" />
+      <Separator orientation="vertical" className="ml-2" />
       {activePost !== undefined && (
         <ScrollArea className="ml-4 grow">
           <PostView post={activePost} />
@@ -57,7 +57,7 @@ function SubredditContent({
 function Fallback() {
   return (
     <div className="flex flex-row mt-4 min-h-0 h-full">
-      <ScrollArea className="pr-3 max-w-xs grow">
+      <ScrollArea className="max-w-xs grow">
         <ul className="flex flex-col space-y-4">
           <li>
             <PostCardSkeleton />
@@ -82,7 +82,7 @@ function Fallback() {
           </li>
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-1" />
+      <Separator orientation="vertical" className="ml-2" />
     </div>
   );
 }
