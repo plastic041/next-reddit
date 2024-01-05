@@ -44,7 +44,6 @@ function SubredditContent({
           })}
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-2" />
       {activePost !== undefined && (
         <ScrollArea className="ml-4 grow">
           <PostView post={activePost} />
@@ -82,7 +81,6 @@ function Fallback() {
           </li>
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-2" />
     </div>
   );
 }
