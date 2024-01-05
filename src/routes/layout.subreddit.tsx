@@ -7,7 +7,7 @@ import { rootRoute } from "@/router.tsx";
 import { Post, type Subreddit } from "@/typings/subreddit.ts";
 import { Await, Route, defer } from "@tanstack/react-router";
 import { Suspense, useState } from "react";
-import { z } from "zod";
+import { type Output, fallback, object, parse, picklist } from "valibot";
 
 type SubredditContentProps = {
   posts: Post[];
@@ -111,21 +111,22 @@ export function SubredditPage() {
   );
 }
 
-const dateRangeValueSchema = z
-  .enum(["day", "week", "month", "year", "all"])
-  .catch("week");
+const DateRangeValueSchema = fallback(
+  picklist(["day", "week", "month", "year", "all"]),
+  "week"
+);
 
-const searchSchema = z.object({
-  t: dateRangeValueSchema,
+const SearchSchema = object({
+  t: DateRangeValueSchema,
 });
 
-export type DateRangeValue = z.infer<typeof dateRangeValueSchema>;
+export type DateRangeValue = Output<typeof DateRangeValueSchema>;
 
 export const subredditRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/r/$subreddit",
   component: SubredditPage,
-  validateSearch: searchSchema.parse,
+  validateSearch: (search) => parse(SearchSchema, search),
 
   loaderDeps: ({ search: { t } }) => ({ t }),
   loader: async ({ params: { subreddit }, deps: { t }, abortController }) => {
