@@ -13,5 +13,7 @@
     "shortscarystories",
     "Subreddits",
     "webdev"
-  ]
+  ],
+  "prettier.enable": false,
+  "eslint.enable": false
 }
