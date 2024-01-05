@@ -2,7 +2,6 @@ import { DateRange } from "@/components/date-range.tsx";
 import { PostCard, PostCardSkeleton } from "@/components/post-card.tsx";
 import { PostView } from "@/components/post-view.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
-import { Separator } from "@/components/ui/separator.tsx";
 import { H1 } from "@/components/ui/typography.tsx";
 import { rootRoute } from "@/router.tsx";
 import { Post, type Subreddit } from "@/typings/subreddit.ts";
@@ -44,7 +43,6 @@ function SubredditContent({
           })}
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-2" />
       {activePost !== undefined && (
         <ScrollArea className="ml-4 grow">
           <PostView post={activePost} />
@@ -82,7 +80,6 @@ function Fallback() {
           </li>
         </ul>
       </ScrollArea>
-      <Separator orientation="vertical" className="ml-2" />
     </div>
   );
 }
