@@ -1,5 +1,6 @@
 import type * as React from "react";
 
+import { Typography } from "@/components/ui/typography.tsx";
 import { cn } from "@/lib/utils";
 
 const Card = ({
@@ -31,7 +32,7 @@ const CardTitle = ({
 	className,
 	...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
-	<h3 className={cn("font-semibold tracking-tight", className)} {...props} />
+	<Typography as="h3" className={className} {...props} />
 );
 CardTitle.displayName = "CardTitle";
 
@@ -39,7 +40,7 @@ const CardDescription = ({
 	className,
 	...props
 }: React.HTMLAttributes<HTMLParagraphElement>) => (
-	<p className={cn("text-sm text-muted-foreground", className)} {...props} />
+	<div className={cn("text-sm text-muted-foreground", className)} {...props} />
 );
 CardDescription.displayName = "CardDescription";
 

@@ -8,7 +8,8 @@ const typographyVariants = cva("", {
 	variants: {
 		as: {
 			h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
-			h2: "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 text-pretty",
+			h2: "scroll-m-20 text-3xl font-bold tracking-tight first:mt-0 text-pretty",
+			h3: "semibold tracking-tight",
 			p: "leading-7 [&:not(:first-child)]:mt-6",
 			blockquote: "mt-6 border-l-2 pl-6 italic",
 			ul: "my-6 ml-6 list-disc [&>li]:mt-2",
@@ -26,6 +27,9 @@ type TypographyH1Props = {
 type TypographyH2Props = {
 	as?: "h2";
 } & React.HTMLAttributes<HTMLHeadingElement>;
+type TypographyH3Props = {
+	as?: "h3";
+} & React.HTMLAttributes<HTMLHeadingElement>;
 type TypographyPProps = {
 	as?: "p";
 } & React.HTMLAttributes<HTMLParagraphElement>;
@@ -40,6 +44,7 @@ type TypographyProps = VariantProps<typeof typographyVariants> & {
 } & (
 		| TypographyH1Props
 		| TypographyH2Props
+		| TypographyH3Props
 		| TypographyPProps
 		| TypographyBlockquoteProps
 		| TypographyUlProps

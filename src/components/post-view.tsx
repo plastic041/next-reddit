@@ -70,6 +70,7 @@ export function PostView({ post }: PostViewProps) {
 				</div>
 			</div>
 			<Markdown
+				className="font-[literata]"
 				components={{
 					h2(props) {
 						return (
