@@ -1,19 +1,23 @@
 {
-  "editor.codeActionsOnSave": {
-    "quickfix.biome": "explicit",
-    "source.organizeImports.biome": "explicit"
-  },
-  "editor.defaultFormatter": "biomejs.biome",
-  "typescript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "cSpell.words": [
-    "fullname",
-    "picklist",
-    "selftext",
-    "shortscarystories",
-    "Subreddits",
-    "webdev"
-  ],
-  "prettier.enable": false,
-  "eslint.enable": false
+	"editor.codeActionsOnSave": {
+		"quickfix.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"cSpell.words": [
+		"fullname",
+		"picklist",
+		"selftext",
+		"shortscarystories",
+		"Subreddits",
+		"webdev"
+	],
+	"prettier.enable": false,
+	"eslint.enable": false,
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }

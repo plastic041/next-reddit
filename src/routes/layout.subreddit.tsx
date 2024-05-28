@@ -2,8 +2,8 @@ import { DateRange } from "@/components/date-range.tsx";
 import { PostCard, PostCardSkeleton } from "@/components/post-card.tsx";
 import { PostView } from "@/components/post-view.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
-import { Toggle } from "@/components/ui/toggle"
-import { H1 } from "@/components/ui/typography.tsx";
+import { Toggle } from "@/components/ui/toggle";
+import { Typography } from "@/components/ui/typography.tsx";
 import { rootRoute } from "@/router.tsx";
 import { Post, type Subreddit } from "@/typings/subreddit.ts";
 import { RowsIcon } from "@radix-ui/react-icons";
@@ -11,24 +11,25 @@ import { Await, Route, defer } from "@tanstack/react-router";
 import { Suspense, useState } from "react";
 import { type Output, fallback, object, parse, picklist } from "valibot";
 
-
 type SubredditContentProps = {
 	posts: Post[];
 	activePostId: Post["id"] | null;
 	setActivePostId: (id: Post["id"] | null) => void;
-  isListOpened: boolean;
+	isListOpened: boolean;
 };
 function SubredditContent({
 	posts,
 	activePostId,
 	setActivePostId,
-  isListOpened,
+	isListOpened,
 }: SubredditContentProps) {
 	const activePost = posts.find((post) => post.id === activePostId);
 
 	return (
 		<div className="flex flex-row mt-4 min-h-0 gap-4">
-			<ScrollArea className={`max-w-xs shrink-0 ${isListOpened ? '' : 'hidden'}`}>
+			<ScrollArea
+				className={`max-w-xs shrink-0 ${isListOpened ? "" : "hidden"}`}
+			>
 				<ul className="flex flex-col space-y-4">
 					{posts.map((post) => {
 						const isActive = post.id === activePostId;
@@ -49,7 +50,7 @@ function SubredditContent({
 				</ul>
 			</ScrollArea>
 			{activePost !== undefined && (
-				<ScrollArea className="grow">
+				<ScrollArea className="grow" type="always">
 					<PostView post={activePost} />
 				</ScrollArea>
 			)}
@@ -98,13 +99,13 @@ export function SubredditPage() {
 
 	return (
 		<div className="flex flex-col flex-1 min-h-0">
-			<H1>r/{subreddit}</H1>
+			<Typography as="h1">r/{subreddit}</Typography>
 			<div className="mt-4 place-self-start flex flex-row">
 				<Toggle
 					variant="outline"
 					className="mr-2"
 					onClick={() => setListOpened(!isListOpened)}
-          pressed={isListOpened}
+					pressed={isListOpened}
 				>
 					<RowsIcon />
 				</Toggle>
@@ -117,7 +118,7 @@ export function SubredditPage() {
 							posts={posts}
 							activePostId={activePostId}
 							setActivePostId={setActivePostId}
-              isListOpened={isListOpened}
+							isListOpened={isListOpened}
 						/>
 					)}
 				</Await>

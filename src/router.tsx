@@ -4,7 +4,7 @@ import { indexRoute } from "./routes/layout.subreddits.tsx";
 import { Layout } from "./routes/layout.tsx";
 
 export const rootRoute = new RootRoute({
-  component: Layout,
+	component: Layout,
 });
 
 export const routeTree = rootRoute.addChildren([indexRoute, subredditRoute]);
@@ -12,7 +12,7 @@ export const routeTree = rootRoute.addChildren([indexRoute, subredditRoute]);
 export const router = new Router({ routeTree });
 
 declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
+	interface Register {
+		router: typeof router;
+	}
 }
