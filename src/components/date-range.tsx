@@ -1,6 +1,7 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group.tsx";
 import { Link, useSearch } from "@tanstack/react-router";
-import { DateRangeValue, subredditRoute } from "../routes/layout.subreddit.tsx";
+import { type Output, fallback, picklist } from "valibot";
+import { Route } from "../routes/r/$subreddit.tsx";
 
 const DATES_RANGES: readonly { label: string; value: DateRangeValue }[] = [
 	{ label: "Past 24 hours", value: "day" },
@@ -10,9 +11,16 @@ const DATES_RANGES: readonly { label: string; value: DateRangeValue }[] = [
 	{ label: "All time", value: "all" },
 ] as const;
 
+export const DateRangeValueSchema = fallback(
+	picklist(["day", "week", "month", "year", "all"]),
+	"week",
+);
+
+type DateRangeValue = Output<typeof DateRangeValueSchema>;
+
 export function DateRange() {
 	const { t } = useSearch({
-		from: subredditRoute.id,
+		from: Route.id,
 	});
 
 	return (

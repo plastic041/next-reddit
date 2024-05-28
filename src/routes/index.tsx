@@ -1,6 +1,5 @@
-import { Link, Route } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Button } from "../components/ui/button.tsx";
-import { rootRoute } from "../router.tsx";
 
 const SUBREDDITS = [
 	{ name: "Short Scary Stories", id: "shortscarystories" },
@@ -8,7 +7,7 @@ const SUBREDDITS = [
 	{ name: "Two Sentence Horror", id: "twosentencehorror" },
 ] as const;
 
-export function Subreddits() {
+function Subreddits() {
 	return (
 		<div className="">
 			<h4 className="text-lg font-semibold">Subreddits</h4>
@@ -35,8 +34,6 @@ export function Subreddits() {
 	);
 }
 
-export const indexRoute = new Route({
-	getParentRoute: () => rootRoute,
-	path: "/",
+export const Route = createFileRoute("/")({
 	component: Subreddits,
 });
