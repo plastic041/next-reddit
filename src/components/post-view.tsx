@@ -53,14 +53,14 @@ export function PostView({ post }: PostViewProps) {
 			className="flex flex-col px-8 py-6 border border-slate-500"
 			ref={articleRef}
 		>
-			<div className="flex flex-row border-b pb-2 items-end space-x-4">
+			<div className="flex flex-row items-end gap-4">
 				<div className="flex flex-col grow">
 					<p className="text-sm text-muted-foreground">
 						u/{post.author} - {createdAt.toLocaleDateString()}
 					</p>
 					<Typography as="h2">{post.title}</Typography>
 				</div>
-				<div className="flex flex-row space-x-2">
+				<div className="flex flex-row gap-x-2">
 					<Button size="icon" variant="link" asChild>
 						<a href={post.url} target="_blank" rel="noopener noreferrer">
 							<OpenInNewWindowIcon />
@@ -69,17 +69,10 @@ export function PostView({ post }: PostViewProps) {
 					<CopyLinkButton url={post.url} />
 				</div>
 			</div>
+			<hr className="my-4" />
 			<Markdown
 				className="font-[literata]"
 				components={{
-					h2(props) {
-						return (
-							<Typography as="h2" {...props}>
-								{/* biome-ignore lint/complexity/noUselessFragments: <explanation> */}
-								<>{props.children}</>
-							</Typography>
-						);
-					},
 					p(props) {
 						return (
 							<Typography as="p" {...props}>
