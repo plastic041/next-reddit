@@ -5,7 +5,7 @@ import {
 	ClipboardCopyIcon,
 	OpenInNewWindowIcon,
 } from "@radix-ui/react-icons";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Markdown from "react-markdown";
 import type { Post } from "../typings/subreddit.ts";
 
@@ -34,24 +34,15 @@ function CopyLinkButton({ url }: CopyLinkButtonProps) {
 
 type PostViewProps = {
 	post: Post;
+	ref: React.Ref<HTMLDivElement>;
 };
-export function PostView({ post }: PostViewProps) {
+export function PostView({ post, ref }: PostViewProps) {
 	const createdAt = new Date(post.created_utc * 1000);
-
-	const articleRef = useRef<HTMLDivElement | null>(null);
-	// biome-ignore lint/correctness/useExhaustiveDependencies: post should be the dependency
-	useEffect(() => {
-		if (articleRef.current) {
-			articleRef.current.scrollIntoView({
-				behavior: "smooth",
-			});
-		}
-	}, [post]);
 
 	return (
 		<article
 			className="flex flex-col px-8 py-6 border border-slate-500"
-			ref={articleRef}
+			ref={ref}
 		>
 			<div className="flex flex-row items-end gap-4">
 				<div className="flex flex-col grow">
@@ -76,14 +67,6 @@ export function PostView({ post }: PostViewProps) {
 					p(props) {
 						return (
 							<Typography as="p" {...props}>
-								{/* biome-ignore lint/complexity/noUselessFragments: <explanation> */}
-								<>{props.children}</>
-							</Typography>
-						);
-					},
-					ul(props) {
-						return (
-							<Typography as="ul" {...props}>
 								{/* biome-ignore lint/complexity/noUselessFragments: <explanation> */}
 								<>{props.children}</>
 							</Typography>

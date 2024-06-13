@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import type { Post } from "@/typings/subreddit.ts";
 import { findFirst } from "effect/Array";
 import { match } from "effect/Option";
+import { useRef } from "react";
 
 type SubredditContentProps = {
 	posts: Post[];
@@ -19,6 +20,15 @@ export function SubredditContent({
 }: SubredditContentProps) {
 	const activePost = findFirst(posts, (post) => post.id === activePostId);
 
+	const articleRef = useRef<HTMLDivElement | null>(null);
+
+	function handleClick(post: Post) {
+		setActivePostId(post.id);
+		articleRef.current?.scrollIntoView({
+			behavior: "smooth",
+		});
+	}
+
 	return (
 		<div className="flex flex-row mt-4 min-h-0 gap-4">
 			<ScrollArea
@@ -27,16 +37,13 @@ export function SubredditContent({
 				<ul className="flex flex-col space-y-4">
 					{posts.map((post) => {
 						const isActive = post.id === activePostId;
-						function handleClick() {
-							setActivePostId(post.id);
-						}
 
 						return (
 							<li key={post.id}>
 								<PostCard
 									post={post}
 									isActive={isActive}
-									onClick={handleClick}
+									onClick={() => handleClick(post)}
 								/>
 							</li>
 						);
@@ -47,7 +54,7 @@ export function SubredditContent({
 			{match(activePost, {
 				onSome: (post) => (
 					<ScrollArea className="grow">
-						<PostView post={post} />
+						<PostView post={post} ref={articleRef} />
 					</ScrollArea>
 				),
 				onNone: () => null,
