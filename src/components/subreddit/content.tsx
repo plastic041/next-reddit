@@ -24,39 +24,40 @@ export function SubredditContent({
 
 	function handleClick(post: Post) {
 		setActivePostId(post.id);
-		articleRef.current?.scrollIntoView({
-			behavior: "smooth",
-		});
+		if (articleRef.current) {
+			window.scrollTo({
+				top: articleRef.current?.offsetTop - 160,
+				behavior: "smooth",
+			});
+		}
 	}
 
 	return (
-		<div className="flex flex-row mt-4 min-h-0 gap-4">
-			<ScrollArea
-				className={`max-w-xs shrink-0 ${isListOpened ? "" : "hidden"}`}
-			>
-				<ul className="flex flex-col space-y-4">
-					{posts.map((post) => {
-						const isActive = post.id === activePostId;
+		<div className="flex flex-row mt-4 gap-4">
+			<div className="sticky top-40 shrink-0 max-h-[80vh]">
+				<ScrollArea
+					className={`max-w-xs ${isListOpened ? "" : "hidden"} h-[80vh]`}
+				>
+					<ul className="flex flex-col space-y-4">
+						{posts.map((post) => {
+							const isActive = post.id === activePostId;
 
-						return (
-							<li key={post.id}>
-								<PostCard
-									post={post}
-									isActive={isActive}
-									onClick={() => handleClick(post)}
-								/>
-							</li>
-						);
-					})}
-				</ul>
-			</ScrollArea>
+							return (
+								<li key={post.id}>
+									<PostCard
+										post={post}
+										isActive={isActive}
+										onClick={() => handleClick(post)}
+									/>
+								</li>
+							);
+						})}
+					</ul>
+				</ScrollArea>
+			</div>
 
 			{match(activePost, {
-				onSome: (post) => (
-					<ScrollArea className="grow" type="always">
-						<PostView post={post} ref={articleRef} />
-					</ScrollArea>
-				),
+				onSome: (post) => <PostView post={post} ref={articleRef} />,
 				onNone: () => null,
 			})}
 		</div>

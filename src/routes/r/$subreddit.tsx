@@ -17,31 +17,35 @@ export function SubredditPage() {
 	const [isListOpened, setListOpened] = useState(true);
 
 	return (
-		<div className="flex flex-col flex-1 min-h-0">
-			<Typography as="h1">r/{subreddit}</Typography>
-			<div className="mt-4 place-self-start flex flex-row">
-				<Toggle
-					variant="outline"
-					className="mr-2"
-					onClick={() => setListOpened(!isListOpened)}
-					pressed={isListOpened}
-				>
-					<RowsIcon />
-				</Toggle>
-				<DateRange />
+		<div className="grid grid-cols-12 px-2 xl:px-0">
+			<header className="col-start-1 xl:col-start-3 col-span-full xl:col-span-8 sticky top-0 pt-8 bg-white z-50 h-36">
+				<Typography as="h1">r/{subreddit}</Typography>
+				<div className="mt-4 place-self-start flex flex-row">
+					<Toggle
+						variant="outline"
+						className="mr-2"
+						onClick={() => setListOpened(!isListOpened)}
+						pressed={isListOpened}
+					>
+						<RowsIcon />
+					</Toggle>
+					<DateRange />
+				</div>
+			</header>
+			<div className="col-start-1 xl:col-start-3 col-span-full xl:col-span-8">
+				<Suspense fallback={<Fallback />}>
+					<Await promise={postsPromise}>
+						{(posts) => (
+							<SubredditContent
+								posts={posts}
+								activePostId={activePostId}
+								setActivePostId={setActivePostId}
+								isListOpened={isListOpened}
+							/>
+						)}
+					</Await>
+				</Suspense>
 			</div>
-			<Suspense fallback={<Fallback />}>
-				<Await promise={postsPromise}>
-					{(posts) => (
-						<SubredditContent
-							posts={posts}
-							activePostId={activePostId}
-							setActivePostId={setActivePostId}
-							isListOpened={isListOpened}
-						/>
-					)}
-				</Await>
-			</Suspense>
 		</div>
 	);
 }

@@ -41,7 +41,7 @@ export function PostView({ post, ref }: PostViewProps) {
 
 	return (
 		<article
-			className="flex flex-col px-8 py-6 border border-slate-500"
+			className="flex flex-col px-8 py-6 border border-slate-500 mb-4"
 			ref={ref}
 		>
 			<div className="flex flex-row items-end gap-4">
