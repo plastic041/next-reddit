@@ -53,7 +53,7 @@ export function SubredditContent({
 
 			{match(activePost, {
 				onSome: (post) => (
-					<ScrollArea className="grow">
+					<ScrollArea className="grow" type="always">
 						<PostView post={post} ref={articleRef} />
 					</ScrollArea>
 				),
