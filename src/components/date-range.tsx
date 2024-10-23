@@ -1,6 +1,6 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group.tsx";
 import { Link, useSearch } from "@tanstack/react-router";
-import { type Output, fallback, picklist } from "valibot";
+import { fallback, picklist, type InferOutput } from "valibot";
 import { Route } from "../routes/r/$subreddit.tsx";
 
 const DATES_RANGES: readonly { label: string; value: DateRangeValue }[] = [
@@ -16,7 +16,7 @@ export const DateRangeValueSchema = fallback(
 	"week",
 );
 
-type DateRangeValue = Output<typeof DateRangeValueSchema>;
+type DateRangeValue = InferOutput<typeof DateRangeValueSchema>;
 
 export function DateRange() {
 	const { t } = useSearch({
@@ -28,8 +28,9 @@ export function DateRange() {
 			{DATES_RANGES.map(({ label, value }) => (
 				<ToggleGroupItem key={value} value={value} asChild>
 					<Link
+						to="."
 						search={{
-							t: value,
+							t: value
 						}}
 					>
 						{label}
