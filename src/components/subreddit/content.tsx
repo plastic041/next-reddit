@@ -33,10 +33,10 @@ export function SubredditContent({
 	}
 
 	return (
-		<div className="flex flex-row mt-4 gap-4">
+		<div className="flex flex-row mt-4">
 			<div className="sticky top-40 shrink-0 max-h-[80vh]">
 				<ScrollArea
-					className={`max-w-xs ${isListOpened ? "" : "hidden"} h-[80vh]`}
+					className={`max-w-xs ${isListOpened ? "" : "hidden"} h-[80vh] mr-4`}
 				>
 					<ul className="flex flex-col space-y-4">
 						{posts.map((post) => {
