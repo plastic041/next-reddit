@@ -17,11 +17,13 @@ import { Route as RSubredditImport } from './routes/r/$subreddit'
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
+  id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
 const RSubredditRoute = RSubredditImport.update({
+  id: '/r/$subreddit',
   path: '/r/$subreddit',
   getParentRoute: () => rootRoute,
 } as any)
@@ -49,7 +51,44 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ IndexRoute, RSubredditRoute })
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/r/$subreddit': typeof RSubredditRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/r/$subreddit': typeof RSubredditRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/r/$subreddit': typeof RSubredditRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/r/$subreddit'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/r/$subreddit'
+  id: '__root__' | '/' | '/r/$subreddit'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  RSubredditRoute: typeof RSubredditRoute
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  RSubredditRoute: RSubredditRoute,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
