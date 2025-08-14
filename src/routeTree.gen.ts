@@ -8,65 +8,34 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as RSubredditRouteImport } from './routes/r/$subreddit'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as RSubredditImport } from './routes/r/$subreddit'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const RSubredditRoute = RSubredditImport.update({
+const RSubredditRoute = RSubredditRouteImport.update({
   id: '/r/$subreddit',
   path: '/r/$subreddit',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/r/$subreddit': {
-      id: '/r/$subreddit'
-      path: '/r/$subreddit'
-      fullPath: '/r/$subreddit'
-      preLoaderRoute: typeof RSubredditImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/r/$subreddit': typeof RSubredditRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/r/$subreddit': typeof RSubredditRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/r/$subreddit': typeof RSubredditRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/r/$subreddit'
@@ -75,37 +44,34 @@ export interface FileRouteTypes {
   id: '__root__' | '/' | '/r/$subreddit'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RSubredditRoute: typeof RSubredditRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/r/$subreddit': {
+      id: '/r/$subreddit'
+      path: '/r/$subreddit'
+      fullPath: '/r/$subreddit'
+      preLoaderRoute: typeof RSubredditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RSubredditRoute: RSubredditRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/r/$subreddit"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/r/$subreddit": {
-      "filePath": "r/$subreddit.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

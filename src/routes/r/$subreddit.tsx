@@ -61,7 +61,7 @@ export const Route = createFileRoute("/r/$subreddit")({
 	loaderDeps: ({ search: { t } }) => ({ t }),
 	loader: async ({ params: { subreddit }, deps: { t }, abortController }) => {
 		const postsPromise = new Promise<Post[]>((resolve) => {
-			const url = new URL(`https://www.reddit.com/r/${subreddit}/top.json`);
+			const url = new URL(`https://oauth.reddit.com/r/${subreddit}/top.json`);
 			url.searchParams.set("t", t);
 
 			fetch(url.toString(), {
